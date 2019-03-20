@@ -2,7 +2,7 @@
 
 var expect = require('chai').expect,
     sinon = require('sinon'),
-    Cloudant = require('cloudant'),
+    Cloudant = require('@cloudant/cloudant'),
     session = require('express-session'),
     CloudantStore = require('../lib/connect-cloudant-store')(session);
 
@@ -31,7 +31,7 @@ describe('Testsuite - CloudantStore', function() {
         'view': function() {}
     };
 
-    var client = new Cloudant(goodClientParams);
+    var client = Cloudant(goodClientParams);
 
     describe('TestSuite - CloudantStore', function() {
         beforeEach(function() {
@@ -60,7 +60,7 @@ describe('Testsuite - CloudantStore', function() {
                 error = err;
             }
             expect(error).not.to.be.null;
-            expect(error.message).to.deep.equal('invalid url');
+            expect(error.message).to.deep.equal('Invalid URL');
             expect(store).not.to.be.ok;
         });
 
